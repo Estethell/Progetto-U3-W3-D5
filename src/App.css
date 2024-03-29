@@ -155,9 +155,7 @@ ul {
   font-weight: 700;
 }
 
-#rock,
-#pop,
-#hiphop,
+.rock,
 #searchResults {
   color: white;
   font-weight: 700;
