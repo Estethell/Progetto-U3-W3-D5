@@ -26,7 +26,7 @@ const MainSection = () => {
         <Col lg={10}>
           <div id="rock">
             <h2>Rock Classics</h2>
-            <Row className="py-3" id="rockSection">
+            <Row className=" py-3" id="rockSection">
               <Col sm={2} lg={3} xl={4} className="imgLinks">
                 <div>
                   <HomePageFetch artistName="queen" />
