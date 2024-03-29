@@ -1,22 +1,17 @@
-const albumCard = function () {
-  // mettere songInfo come parametro
+import { Col } from "react-bootstrap";
+
+const AlbumCard = ({ data }) => {
+  debugger;
   return (
-    // `
-    //     // <div class="col text-center" id=${songInfo.id}>
-    //     //     <img class="img-fluid" src=${
-    //       songInfo.album.cover_medium
-    //     } alt="track" />
-    //   <p>
-    //       Track: "${
-    //         songInfo.title.length < 16
-    //           ? `${songInfo.title}`
-    //           : `${songInfo.title.substring(0, 16)}...`
-    //       }"<br>
-    //       Artist: ${songInfo.artist.name}
-    //   </p>
-    // </div>`
-    <h1>ciao</h1>
+    <Col className="text-center" id={data.id}>
+      <img className="img-fluid" src={data.album.cover_medium} alt="track" />
+      <p>
+        Track: {data.title.length < 16 ? `${data.title}` : `${data.title.substring(0, 16)}...`}
+        <br />
+        Artist: {data.artist.name}
+      </p>
+    </Col>
   );
 };
 
-export default albumCard;
+export default AlbumCard;
