@@ -2,12 +2,11 @@ import { Col } from "react-bootstrap";
 import { Navbar, Button, Form, Nav } from "react-bootstrap";
 import logo from "../assets/logo/logo.png";
 import { HouseFill, BookFill } from "react-bootstrap-icons";
-import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { searchMusic } from "../redux/actions/action";
 
 const NavBar = () => {
-  const useSearch = useSelector((state) => {
-    return state.music.seach;
-  });
+  const dispatch = useDispatch();
   return (
     <Col lg={2}>
       <Navbar className="navbar navbar-expand-md fixed-left justify-content-between" id="sidebar">
@@ -45,8 +44,13 @@ const NavBar = () => {
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Form className="input-group mt-3">
-                  {/* ricordare di mettere l'onChange al form  */}
+                <Form
+                  className="input-group mt-3"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    dispatch(searchMusic(e.target["0"].value));
+                  }}
+                >
                   <input
                     type="text"
                     className="form-control"

@@ -1,7 +1,6 @@
 import { Col } from "react-bootstrap";
 
 const AlbumCard = ({ data }) => {
-  debugger;
   return (
     <Col className="text-center" id={data.id}>
       <img className="img-fluid" src={data.album.cover_medium} alt="track" />

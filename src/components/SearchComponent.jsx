@@ -1,33 +1,39 @@
-const search = async (event) => {
-  event.preventDefault();
-  let div = document.querySelector("#searchResults .row");
-  div.innerHTML = "";
-  let searchQuery = document.querySelector("#searchField").value;
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
-  if (searchQuery.length > 2) {
-    document.querySelector("#searchResults").style.display = "block";
+import AlbumCard from "./AlbumCard";
 
-    try {
-      let response = await fetch("https://striveschool-api.herokuapp.com/api/deezer/search?q=" + searchQuery, {
-        method: "GET",
-        headers: {
-          "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
-          "X-RapidAPI-Key": "9d408f0366mshab3b0fd8e5ecdf7p1b09f2jsne682a1797fa0",
-        },
-      });
-      if (response.ok) {
-        let result = await response.json();
-        let { data } = result;
-        for (let x = 0; x < data.length; x++) {
-          div.innerHTML += albumCard(data[x]);
+const SearchComponent = () => {
+  const searchQuery = useSelector((state) => {
+    return state.music.search;
+  });
+  const [artists, setArtits] = useState();
+
+  const searchFetch = () => {
+    fetch("https://striveschool-api.herokuapp.com/api/deezer/search?q=" + searchQuery, {
+      method: "GET",
+      headers: {
+        "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
+        "X-RapidAPI-Key": "9d408f0366mshab3b0fd8e5ecdf7p1b09f2jsne682a1797fa0",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("errore nella fetch della ricerca artista");
         }
-      } else {
-        throw new Error("error in search");
-      }
-    } catch (err) {
-      console.log("error", err);
-    }
-  } else {
-    document.querySelector("#searchResults").style.display = "none";
-  }
+      })
+      .then((data) => {
+        setArtits(data);
+      })
+      .catch((error) => {
+        console.log("Errore", error);
+      });
+  };
+
+  useEffect(() => {
+    SearchComponent();
+  }, [searchQuery]);
+  return <AlbumCard artists={artists} />;
 };
