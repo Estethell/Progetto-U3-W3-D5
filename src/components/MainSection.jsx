@@ -27,11 +27,9 @@ const MainSection = () => {
           <div id="rock">
             <h2>Rock Classics</h2>
             <Row className=" py-3" id="rockSection">
-              <Col sm={2} lg={3} xl={4} className="imgLinks">
-                <div>
-                  <HomePageFetch artistName="queen" />
-                </div>
-              </Col>
+              <div className="d-flex">
+                <HomePageFetch artistName="queen" />
+              </div>
             </Row>
           </div>
         </Col>
@@ -42,11 +40,9 @@ const MainSection = () => {
           <div id="pop">
             <h2>Pop Classics</h2>
             <Row className="py-3" id="popSection">
-              <Col sm={2} lg={3} xl={4} className="imgLinks">
-                <div>
-                  <HomePageFetch artistName="katyperry" />
-                </div>
-              </Col>
+              <div className="d-flex">
+                <HomePageFetch artistName="katyperry" />
+              </div>
             </Row>
           </div>
         </Col>
@@ -56,11 +52,9 @@ const MainSection = () => {
           <div id="hiphop">
             <h2>HipHop</h2>
             <Row className="py-3" id="hipHopSection">
-              <Col sm={2} lg={3} xl={4} className="imgLinks">
-                <div>
-                  <HomePageFetch artistName="eminem" />
-                </div>
-              </Col>
+              <div className="d-flex">
+                <HomePageFetch artistName="eminem" />
+              </div>
             </Row>
           </div>
         </Col>

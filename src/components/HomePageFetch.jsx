@@ -10,8 +10,9 @@ const HomePageFetch = ({ artistName }) => {
   });
 
   useEffect(() => {
-    setArtista(selector !== 0 ? selector : artistName);
-  }, [artistName, selector]);
+    debugger;
+    setArtista(selector !== "" ? selector : artistName);
+  }, [selector]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -39,11 +40,11 @@ const HomePageFetch = ({ artistName }) => {
   }, [artista]);
 
   return (
-    <div>
+    <>
       {data.map((e, i) => (
         <AlbumCard key={i} data={e} />
       ))}
-    </div>
+    </>
   );
 };
 
