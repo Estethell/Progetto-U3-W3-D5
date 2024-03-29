@@ -4,14 +4,19 @@ import AlbumCard from "./AlbumCard";
 
 const HomePageFetch = ({ artistName }) => {
   const [data, setData] = useState([]);
+  const [artista, setArtista] = useState(artistName);
   const selector = useSelector((state) => {
     return state.music.search;
   });
 
   useEffect(() => {
+    setArtista(selector !== 0 ? selector : artistName);
+  }, [artistName, selector]);
+
+  useEffect(() => {
     const fetchData = async () => {
       try {
-        let response = await fetch(`https://striveschool-api.herokuapp.com/api/deezer/search?q=${artistName}`, {
+        let response = await fetch(`https://striveschool-api.herokuapp.com/api/deezer/search?q=${artista}`, {
           method: "GET",
           headers: {
             "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
@@ -31,7 +36,7 @@ const HomePageFetch = ({ artistName }) => {
     };
 
     fetchData();
-  }, [artistName]);
+  }, [artista]);
 
   return (
     <div>
